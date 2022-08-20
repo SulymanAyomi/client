@@ -1,0 +1,66 @@
+.billing-fields {
+  margin-bottom: 30px;
+}
+
+.create-ac-content,
+.your-order-payment {
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+
+.login-title {
+  font-size: 19px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.order-table {
+  .table {
+    thead {
+      th {
+        background-color: #fff;
+        font-size: 13px;
+        padding: 8px 5px 5px;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+
+    td {
+      font-size: 13px;
+      padding: 8px 5px 5px;
+    }
+
+    tfoot {
+      font-weight: 600;
+    }
+  }
+
+}
+
+img {
+  max-width: 100%;
+}
+
+.order_title {
+  font-size: 19px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-align: center;
+}
+
+.estimated {
+  font-weight: 700;
+  font-size: 17px;
+
+  &-span {
+    font-weight: 400 !important;
+    margin: 0 7px;
+  }
+}
+
+.estimate {
+  select {
+    width: 30%;
+  }
+}

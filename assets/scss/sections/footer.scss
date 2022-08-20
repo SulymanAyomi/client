@@ -1,0 +1,175 @@
+.footer {
+  padding-top: 1rem;
+}
+
+.search {
+  padding: 10px 0 !important;
+}
+
+.newsletter-section {
+  background-color: #f9f9f9;
+  border: 1px solid #e8e9eb;
+  padding: 35px 0;
+
+
+
+  .h2 {
+    font-size: 19px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .btn {
+    color: #ccc;
+    background-color: #000;
+    text-transform: uppercase;
+    font-size: 13px;
+
+    &:hover {
+      background-color: #3a3434;
+      color: #fff;
+
+    }
+  }
+
+  .footer-newsletter {
+    width: 60%;
+  }
+
+  .section-header {
+    margin: 0 20px 0 0;
+    float: left;
+    display: inline-block;
+    border: 0;
+
+    label {
+      font-weight: 400;
+      margin-bottom: 0;
+      color: #000;
+
+      span {
+        display: block;
+        font-size: 13px;
+        text-align: left;
+      }
+    }
+  }
+
+  .input-group {
+    max-width: 100%;
+    margin: 0;
+    width: auto;
+    position: relative;
+    display: table;
+    border-collapse: separate;
+
+    &__field,
+    &__btn .btn {
+      border-radius: 0;
+    }
+
+    &__field {
+      background-color: #fff;
+    }
+
+    &__btn {
+      white-space: nowrap;
+      width: 1%;
+      display: table-cell;
+      vertical-align: middle;
+      margin: 0;
+    }
+  }
+}
+
+.display-table {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0 !important;
+
+  input {
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #d7d7d7;
+  }
+}
+
+.display-table-cell {
+  float: none;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.newsletter-section .input-group .btn,
+.newsletter-section .input-group__field {
+  height: 40px;
+}
+
+.list--inline {
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.site-footer {
+  background: #141414;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  hr {
+    margin: 0;
+    border-color: #454545;
+    border: 0;
+    border-bottom: 1px solid #e8e9eb;
+  }
+}
+
+.footer-bottom {
+  color: #ffffff;
+}
+
+.footer-top,
+.footer-links a,
+.footer-top p,
+.footer-bottom {
+  color: #ffffff;
+}
+
+.footer-top {
+  padding: 40px 0 15px;
+
+  .h4 {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+}
+
+.footer-links {
+  .h4 {
+    position: relative;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+}
+
+.footer-links ul,
+.contact-box ul {
+  margin-bottom: 20px;
+}

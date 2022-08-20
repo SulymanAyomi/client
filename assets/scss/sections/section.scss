@@ -1,0 +1,80 @@
+body {
+  padding-left: 0;
+  padding-right: 0;
+  font-family: Poppins,
+    Helvetica,
+    Tahoma,
+    Arial,
+    sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.5;
+
+  a {
+    text-decoration: none;
+    color: #555555;
+
+    &:hover {
+      color: #555555;
+
+    }
+
+  }
+}
+
+.start {
+  padding-left: 0;
+  padding-right: 0;
+  font-family: Poppins,
+    Helvetica,
+    Tahoma,
+    Arial,
+    sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+#content_quickview {
+
+  .modal {
+    top: 8%;
+    padding-right: 0 !important;
+    overflow: hidden;
+  }
+
+  .modal-dialog {
+    max-width: 800px;
+    background-color: #fff;
+    padding: 25px;
+
+  }
+
+  .modal-content {
+    border: 0;
+  }
+
+  .modal-body {
+    border: 0;
+    padding: 0;
+  }
+
+  .model-close-btn {
+    width: 30px;
+    height: 30px;
+    line-height: 32px;
+    position: absolute;
+    top: -23px;
+    right: -20px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .pull-right {
+    float: right;
+  }
+}
+
+.active {
+  display: block !important;
+
+}
