@@ -82,7 +82,7 @@ export default {};
 
 <script>
 export default {
-  async asyncData({ $axios, $errorHandler }) {
+  async asyncData({ $axios, error }) {
     try {
       let response = await $axios.$get("/api/products");
       return {
@@ -90,6 +90,7 @@ export default {
       };
     } catch (err) {
       console.log(err);
+      return error({ message: err.message, statusCode: err.message });
     }
   },
   name: "IndexPage",

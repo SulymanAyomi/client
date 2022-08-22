@@ -20,7 +20,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: "~/plugins/localStorage.js", ssr: false },
-    { src: "~/plugins/error-handler.js" },
+    { src: "~/plugins/axios.js" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

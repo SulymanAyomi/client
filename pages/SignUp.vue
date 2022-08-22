@@ -131,6 +131,8 @@ export default {
   },
   methods: {
     async onSubmitForm() {
+      this.loading = true;
+
       this.errors = [];
       if (this.password !== this.password2) {
         this.errors.push("The passwords doesn't match");
@@ -152,9 +154,6 @@ export default {
                 password: this.password,
               },
             });
-            this.$router.push("/");
-          } else {
-            this.errors.push("Server error. Try again");
           }
         }
       } catch (err) {

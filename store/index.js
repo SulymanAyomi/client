@@ -20,6 +20,18 @@ export const actions = {
   displayModal({ commit }, product) {
     commit("setModal", product);
   },
+  fetchCategory() {
+    let categories = $axios.$get("/api/categories");
+    return categories;
+  },
+  fetchBrand() {
+    let brands = $axios.$get("/api/brands");
+    return brands;
+  },
+  fetchAllProduct() {
+    let products = $axios.$get("/api/products");
+    return products;
+  },
 };
 
 export const mutations = {
