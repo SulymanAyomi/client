@@ -21,6 +21,7 @@
                     <label for="CustomerEmail">Email</label>
                     <input
                       name="email"
+                      type="email"
                       placeholder=""
                       id="CustomerEmail"
                       class=""
@@ -28,6 +29,7 @@
                       autocapitalize="off"
                       autofocus=""
                       v-model="email"
+                      required
                     />
                   </div>
                 </div>
@@ -41,6 +43,7 @@
                       id="CustomerPassword"
                       class=""
                       v-model="password"
+                      required
                     />
                   </div>
                 </div>
@@ -91,19 +94,19 @@ export default {
     async onLogin() {
       try {
         this.loading = true;
-        this.$auth.loginWith("local", {
+        await this.$auth.loginWith("local", {
           data: {
             email: this.email,
             password: this.password,
           },
         });
         if (this.$store.state.auth.loggedIn) {
-          toPath = this.$route.query.to || "/cart";
+          toPath = "/cart";
           this.$router.push(toPath);
         }
       } catch (err) {
-        this.errors.push(err);
-        console.log(err);
+        console.log("kkhfcvb", err);
+        this.errors.push(err.response.data.message);
       }
     },
   },

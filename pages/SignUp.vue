@@ -148,17 +148,20 @@ export default {
           let response = await this.$axios.post("/api/auth/signup", formData);
 
           if (response.data.success) {
-            this.$auth.loginWith("local", {
+            await this.$auth.loginWith("local", {
               data: {
                 email: this.email,
                 password: this.password,
               },
             });
+            this.$router.push("/account/address");
+          } else {
+            this.errors.push(response.data.message);
           }
         }
       } catch (err) {
         console.log(err);
-        this.errors.push("Server error. Try again");
+        this.errors.push("Something went wrong. Try again!");
       }
     },
   },

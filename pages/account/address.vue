@@ -2,7 +2,13 @@
   <div class="page-log-in">
     <div class="page section-header text-center">
       <div class="page-title">
-        <div class="wrapper"><h1 class="page-width">Add Address</h1></div>
+        <div class="wrapper">
+          <h1 class="page-width">Add Address</h1>
+          <p>
+            All your orders will be delivered to the address. You can always
+            change it from your <NuxtLink to="/account"> account page</NuxtLink>
+          </p>
+        </div>
       </div>
     </div>
     <div class="container">
@@ -83,17 +89,6 @@
                         type="text"
                       />
                     </div>
-                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                      <label for="input-postcode"
-                        >Post Code <span class="required-f">*</span></label
-                      >
-                      <input
-                        name="postcode"
-                        v-model="zipcode"
-                        id="input-postcode"
-                        type="text"
-                      />
-                    </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
@@ -107,19 +102,6 @@
                         type="text"
                         required="required"
                       />
-                    </div>
-                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                      <label for="input-country"
-                        >Delivery Instructions
-                        <span class="required-f">*</span></label
-                      >
-                      <textarea
-                        name=""
-                        id=""
-                        cols="30"
-                        rows="3"
-                        v-model="info"
-                      ></textarea>
                     </div>
                   </div>
                 </fieldset>
@@ -157,9 +139,7 @@ export default {
       state: "lagos",
       phone: "",
       city: "",
-      zipcode: "",
       streetAddress: "",
-      info: "",
     };
   },
   methods: {
@@ -171,9 +151,7 @@ export default {
           state: this.state,
           phoneNumber: this.phone,
           city: this.city,
-          zipCode: this.zipcode,
           streetAddress: this.streetAddress,
-          deliveryInstructions: this.info,
         });
         if (result.status) {
           this.$router.push("/account");

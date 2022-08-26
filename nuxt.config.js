@@ -21,6 +21,7 @@ export default {
   plugins: [
     { src: "~/plugins/localStorage.js", ssr: false },
     { src: "~/plugins/axios.js" },
+    { src: "~/plugins/auth.js", ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -45,7 +46,8 @@ export default {
     "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
-    "@nuxtjs/auth",
+    "@nuxtjs/auth-next",
+
     [
       "nuxt-fontawesome",
       {
@@ -89,11 +91,16 @@ export default {
     },
     strategies: {
       local: {
+        user: {
+          property: "user",
+          // autoFetch: true
+        },
         endpoints: {
           login: {
             url: "/api/auth/login",
             propertyName: "token",
           },
+          user: { url: "/api/auth/user", method: "get" },
           logout: true,
         },
       },

@@ -25,7 +25,7 @@
                     $auth.$state.user.email
                   }}</nuxt-link>
                 </li>
-                <li @click="onLogout" class="logout">Logout</li>
+                <li @click="onLogout()" class="logout">Logout</li>
               </template>
               <template v-else>
                 <li><nuxt-link to="/login">Login</nuxt-link></li>
@@ -205,6 +205,7 @@ export default {
       });
     },
     onLogout() {
+      console.log("j");
       this.$auth.logout();
     },
   },
