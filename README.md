@@ -3,6 +3,10 @@ E-commerce frontend built with Nuxt.js
 `link to the backend` 
 https://github.com/SulymanAyomi/node-project
 
+`link to admin`
+https://github.com/SulymanAyomi/admin
+
+
 ```bash
 # install dependencies
 $ npm install
