@@ -1,4 +1,4 @@
-E-commerce website frontend built with vue.js
+E-commerce frontend built with vue.js
 
 
 ```bash
