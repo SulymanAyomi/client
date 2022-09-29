@@ -19,7 +19,7 @@
               ><i class="anm anm-user-al" aria-hidden="true"></i
             ></span>
             <ul class="customer-links list-inline">
-              <template v-if="$auth.$state.loggedIn">
+              <template v-if="$store.state.auth.loggedIn">
                 <li>
                   <nuxt-link to="/account">{{
                     $auth.$state.user.email
@@ -194,6 +194,7 @@ export default {
       query: "",
     };
   },
+  mounted() {},
   computed: {
     ...mapGetters(["getCartLength"]),
   },
@@ -205,7 +206,6 @@ export default {
       });
     },
     onLogout() {
-      console.log("j");
       this.$auth.logout();
     },
   },

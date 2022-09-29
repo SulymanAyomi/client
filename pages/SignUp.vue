@@ -148,6 +148,7 @@ export default {
           let response = await this.$axios.post("/api/auth/signup", formData);
 
           if (response.data.success) {
+            console.log("kkkhjgvj");
             await this.$auth.loginWith("local", {
               data: {
                 email: this.email,

@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-      <template>
+      <!-- <template>
         <div>
           <font-awesome-icon :icon="['fas', 'adjust']" />
           <font-awesome-icon icon="dollar-sign" style="font-size: 30px" />
@@ -63,7 +63,7 @@
             />
           </font-awesome-layers>
         </div>
-      </template>
+      </template> -->
     </section>
   </div>
 </template>
@@ -76,15 +76,11 @@
 </template>
 
 <script>
-export default {};
-</script>
-
-
-<script>
 export default {
   async asyncData({ $axios, error }) {
     try {
       let response = await $axios.$get("/api/products");
+      console.log(response);
       return {
         products: response.products,
       };

@@ -259,7 +259,7 @@ export default {
       address: "",
       zipcode: "",
       place: "",
-      errors: [],
+      errors: "",
     };
   },
   mounted() {
@@ -322,7 +322,6 @@ export default {
     },
     onpayment() {
       this.loading = true;
-      this.loading = true;
       let handler = PaystackPop.setup({
         key: "pk_test_890f1e0d3abc876f5eeb00c0ff8f2211d3b553cd", // Replace with your public key
         email: "ay@gmail.com",
@@ -344,6 +343,7 @@ export default {
           cart: this.getCart,
           total: this.nairaToKobo(this.ordertotal),
           estimatedDelivery: this.estimatedDelivery,
+          quantityBought: this.getCartLength,
         };
         let result = await this.$axios.$post("/api/paystack/verify", body);
         if (result.success) {
@@ -386,9 +386,10 @@ export default {
       await this.$axios
         .$post("/api/stripe/payment", {
           token: token,
-          totalPrice: this.ordertotal,
+          total: this.nairaToKobo(this.ordertotal),
           cart: this.getCart,
           estimatedDelivery: this.estimatedDelivery,
+          quantityBought: this.getCartLength,
         })
         .then((response) => {
           console.log(response);

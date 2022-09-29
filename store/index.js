@@ -106,6 +106,19 @@ export const mutations = {
       });
     }
   },
+  inputCommit(state, product) {
+    const quantity = product.quantity;
+    let cartProduct = state.cart.find((prod) => prod._id === product.item._id);
+
+    cartProduct.quantity = quantity;
+    if (cartProduct.quantity === 0) {
+      this.commit("removeProduct", product);
+    } else {
+      let indexOfProduct = state.cart.indexOf(cartProduct);
+      state.cart.splice(indexOfProduct, 1, cartProduct);
+    }
+    this.commit("incrementCartLength");
+  },
 
   increaseQty(state, product) {
     let cartProduct = state.cart.find((prod) => prod._id === product._id);

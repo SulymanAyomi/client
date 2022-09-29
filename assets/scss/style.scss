@@ -1,7 +1,6 @@
 @use 'sections/loadingbar';
 @use 'sections/slide';
 @use 'sections/typograph';
-@use 'sections/navbar';
 @use 'sections/section';
 @use 'sections/error';
 @use 'sections/productbox';
@@ -11,3 +10,4 @@
 @use 'sections/cart';
 @use 'sections/checkout';
 @use 'sections/footer';
+@use 'sections/navbar';

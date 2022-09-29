@@ -100,7 +100,11 @@ export default {
   async fetch() {
     try {
       let response = await this.$axios.$get("/api/state");
+      let address = await this.$axios.$get(
+        `/api/address/${this.$route.params.id}`
+      );
       this.states = response.addresses.data;
+      this.asign(address.address);
     } catch (err) {
       console.log(err);
     }
@@ -114,20 +118,28 @@ export default {
       city: "",
       streetAddress: "",
       states: "",
+      address: "",
     };
   },
   methods: {
+    asign(address) {
+      this.state = address.state;
+      this.city = address.city;
+      this.phone = address.phoneNumber;
+      this.streetAddress = address.streetAddress;
+    },
     async onSubmit() {
       try {
-        let result = await this.$axios.$post("/api/addresses", {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          state: this.state,
-          phoneNumber: this.phone,
-          city: this.city,
-          streetAddress: this.streetAddress,
-        });
-        if (result.status) {
+        let result = await this.$axios.$put(
+          `/api/address/${this.$route.params.id}`,
+          {
+            state: this.state,
+            phoneNumber: this.phone,
+            city: this.city,
+            streetAddress: this.streetAddress,
+          }
+        );
+        if (result.success) {
           this.$bvToast.toast("Success", {
             varient: "danger",
             solid: true,

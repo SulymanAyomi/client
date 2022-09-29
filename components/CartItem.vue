@@ -1,13 +1,13 @@
 <template>
   <tr class="cart__row border-bottom line1 cart-flex border-top">
     <td class="cart__image-wrapper cart-flex-item">
-      <nuxt-link :to="item.getAbsoluteUrl"
+      <nuxtLink :to="item.getAbsoluteUrl"
         ><img class="cart__image" :src="item.photo" :alt="item.title"
-      /></nuxt-link>
+      /></nuxtLink>
     </td>
     <td class="cart__meta small--text-left cart-flex-item">
       <div class="list-view-item__title">
-        <nuxt-link :to="item.getAbsoluteUrl">{{ item.title }} </nuxt-link>
+        <nuxtLink :to="item.getAbsoluteUrl">{{ item.title }} </nuxtLink>
       </div>
 
       <div class="cart__meta-text">
@@ -25,11 +25,12 @@
           </a>
           <input
             class="cart__qty-input qty"
-            type="text"
+            type="number"
             name="updates[]"
             id="qty"
-            v-model="item.quantity"
+            v-model="quantity"
             pattern="[0-9]*"
+            @input="inputhandler(item)"
           />
           <a class="qtyBtn plus" @click="incrementQuantity(item)">
             <font-awesome-icon :icon="['fa', 'plus']" />
@@ -63,16 +64,26 @@ export default {
   data() {
     return {
       item: this.initialItem,
+      quantity: this.initialItem.quantity,
     };
   },
+  monted: {},
+  // watch: {
+  //   quantity(val, oldVal) {
+  //     this.quantity = val;
+  //   },
+  // },
   computed: {
     getItemTotal() {
       return this.item.orderPrice * this.item.quantity;
     },
   },
   methods: {
+    value(item) {},
     decrementQuantity(item) {
       this.$store.commit("decreaseQty", item);
+      this.quantity = this.initialItem.quantity;
+
       this.$bvToast.toast("Product quantity decrease", {
         varient: "danger",
         solid: true,
@@ -81,12 +92,22 @@ export default {
     },
     incrementQuantity(item) {
       this.$store.commit("increaseQty", item);
+      this.quantity = this.initialItem.quantity;
+      console.log(this.initialItem.quantity);
 
       this.$bvToast.toast("Product quantity increase", {
         varient: "danger",
         solid: true,
         noCloseButton: true,
       });
+    },
+    inputhandler(item) {
+      const prod = {
+        quantity: parseInt(this.quantity),
+        item: item,
+      };
+      this.$store.commit("inputCommit", prod);
+      this.quantity = this.initialItem.quantity;
     },
     updateCart() {
       localStorage.setItem("cart", JSON.stringify(this.$store.state.cart));

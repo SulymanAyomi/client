@@ -3,9 +3,9 @@
     <td class="text-left">
       {{ Item.title }}
     </td>
-    <td>${{ Item.price.M }}</td>
+    <td>${{ Item.orderPrice }}</td>
     <td>
-      <span class="money">M</span>
+      <span class="money">{{ Item.orderSize }}</span>
     </td>
     <td>
       {{ Item.quantity }}
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     getItemTotal(item) {
-      return item.quantity * item.price.M;
+      return item.quantity * item.orderPrice;
     },
   },
 };

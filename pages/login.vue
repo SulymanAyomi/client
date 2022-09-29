@@ -101,7 +101,7 @@ export default {
           },
         });
         if (this.$store.state.auth.loggedIn) {
-          toPath = "/cart";
+          const toPath = "/cart";
           this.$router.push(toPath);
         }
       } catch (err) {

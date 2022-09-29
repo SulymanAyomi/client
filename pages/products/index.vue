@@ -494,7 +494,7 @@ export default {
         brands,
         products,
       ]);
-
+      console.log(productResponse);
       return {
         categories: catResponse.categories,
         brands: brandResponse.brands,

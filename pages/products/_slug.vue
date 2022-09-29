@@ -457,7 +457,9 @@ export default {
     },
     async getReview() {
       try {
-        let review = await this.$axios.$get("/api/products/this.product._id");
+        let review = await this.$axios.$get(
+          `/api/products/${this.product._id}`
+        );
         console.log(review);
         return {
           review: review,
