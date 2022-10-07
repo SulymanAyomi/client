@@ -89,8 +89,7 @@
     text-align: left;
 
     &:hover {
-      color: yellow;
-      background-color: gold;
+      background-color: #cdcdd5;
 
       .drop {
         opacity: 1 !important;
@@ -149,7 +148,7 @@
         background-color: #fff;
 
         &:hover {
-          background-color: gold;
+          background-color: #cdcdd5;
         }
       }
     }

@@ -64,7 +64,9 @@
             </fieldset>
             <h2 class="login-title mb-3">
               Shipping details
-              <span class="floatright" @click="setEdit()">edit</span>
+              <span class="floatright">
+                <nuxt-link to="/account/address"> Add</nuxt-link></span
+              >
             </h2>
             <table class="table table-striped table-hover text-left">
               <thead>
@@ -78,11 +80,16 @@
                 </tr>
               </thead>
               <tbody class="">
-                <AddressTable
-                  v-for="address in addresses"
-                  v-bind:key="address._id"
-                  v-bind:address="address"
-                />
+                <template v-if="addresses">
+                  <AddressTable
+                    v-for="address in addresses"
+                    v-bind:key="address._id"
+                    v-bind:address="address"
+                  />
+                </template>
+                <tr>
+                  <td colspan="6">Please add your address for delivery</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -187,6 +194,7 @@ export default {
   float: right;
   text-transform: lowercase;
   color: #0000ff;
+  cursor: pointer;
 }
 thead {
   background-color: #dee1e6;

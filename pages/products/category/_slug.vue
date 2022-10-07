@@ -382,7 +382,7 @@
                     "
                   >
                     <span class="filters-toolbar__product-count"
-                      >Showing: 22</span
+                      >Showing: {{ products.length }}</span
                     >
                   </div>
                   <div class="col-4 col-md-4 col-lg-4 text-right">
@@ -420,11 +420,13 @@
             <div class="grid-products grid--view-items">
               <div class="row">
                 <ProductBox
+                  v-show="grid"
                   v-for="product in products"
                   v-bind:key="product.id"
                   v-bind:product="product"
                 />
                 <ProductList
+                  v-show="list"
                   v-for="product in products"
                   v-bind:key="product.id"
                   v-bind:product="product"
@@ -451,7 +453,6 @@ export default {
         brands,
         products,
       ]);
-      console.log(productResponse);
       return {
         categories: catResponse.categories,
         brands: brandResponse.brands,
@@ -469,6 +470,8 @@ export default {
       },
       men: false,
       women: true,
+      grid: true,
+      list: false,
     };
   },
   mounted() {
@@ -483,6 +486,14 @@ export default {
         this.women != this.women;
         console.log("wo", this.men, this.women);
       }
+    },
+    showGrid() {
+      this.grid = true;
+      this.list = false;
+    },
+    showList() {
+      this.list = true;
+      this.grid = false;
     },
   },
 };

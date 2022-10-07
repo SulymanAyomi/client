@@ -382,7 +382,7 @@
                     "
                   >
                     <span class="filters-toolbar__product-count"
-                      >Showing: 22</span
+                      >Showing: {{ products.length }}</span
                     >
                   </div>
                   <div class="col-4 col-md-4 col-lg-4 text-right">
@@ -419,16 +419,18 @@
             <!-- end toolbar -->
             <div class="grid-products grid--view-items">
               <div class="row">
-                <!-- <ProductBox
-                  v-for="product in category.products"
+                <ProductBox
+                  v-for="product in products"
                   v-bind:key="product.id"
                   v-bind:product="product"
-                /> -->
-                <!-- <ProductList
-                  v-for="product in category.products"
+                  v-show="grid"
+                />
+                <ProductList
+                  v-for="product in products"
                   v-bind:key="product.id"
                   v-bind:product="product"
-                /> -->
+                  v-show="list"
+                />
               </div>
             </div>
           </div>
@@ -440,18 +442,18 @@
 
 <script>
 export default {
-  async asyncData({ $axios }) {
+  async asyncData({ $axios, params }) {
     try {
       let categories = $axios.$get("/api/categories");
       let brands = $axios.$get("/api/brands");
-      let products = $axios.$get("/api/products");
+      let products = $axios.$get(`/api/products/producttype/${params.slug}`);
 
       const [catResponse, brandResponse, productResponse] = await Promise.all([
         categories,
         brands,
         products,
       ]);
-
+      console.log(productResponse);
       return {
         categories: catResponse.categories,
         brands: brandResponse.brands,
@@ -467,9 +469,22 @@ export default {
       category: {
         products: [],
       },
+      grid: true,
+      list: false,
     };
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+    console.log(this.products);
+  },
+  methods: {
+    showGrid() {
+      this.grid = true;
+      this.list = false;
+    },
+    showList() {
+      this.list = true;
+      this.grid = false;
+    },
+  },
 };
 </script>

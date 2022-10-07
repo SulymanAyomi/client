@@ -58,13 +58,8 @@
                     :show-rating="false"
                     :glow="1"
                     :border-width="1"
-                    :rounded-corners="true"
                     :read-only="true"
                     :star-size="10"
-                    :star-points="[
-                      23, 2, 14, 17, 0, 19, 10, 34, 7, 50, 23, 43, 36, 34, 46,
-                      19, 31, 17,
-                    ]"
                   >
                   </star-rating>
                 </div>
@@ -408,6 +403,44 @@
                     </p>
                   </div>
                 </div>
+                <template></template>
+                <div
+                  class="spr-review"
+                  v-for="review in reviews"
+                  :key="review._id"
+                >
+                  <div class="spr-review-header">
+                    <span
+                      class="
+                        product-review
+                        spr-starratings spr-review-header-starratings
+                      "
+                      ><span class="reviewLink">
+                        <client-only>
+                          <star-rating
+                            :rating="review.rating"
+                            :show-rating="false"
+                            :glow="1"
+                            :border-width="1"
+                            :read-only="true"
+                            :star-size="10"
+                          ></star-rating>
+                        </client-only> </span
+                    ></span>
+                    <h3 class="spr-review-header-title">
+                      {{ review.headline }}
+                    </h3>
+                    <span class="spr-review-header-byline"
+                      ><strong>{{ review.user.name }}</strong> on
+                      <strong>{{ new Date(review.createdAt) }}</strong></span
+                    >
+                  </div>
+                  <div class="spr-review-content">
+                    <p class="spr-review-content-body">
+                      {{ review.body }}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -444,6 +477,7 @@ export default {
       ratings: 0,
       body: "",
       headline: "",
+      reviews: [],
     };
   },
   mounted() {
@@ -457,13 +491,9 @@ export default {
     },
     async getReview() {
       try {
-        let review = await this.$axios.$get(
-          `/api/products/${this.product._id}`
-        );
+        let review = await this.$axios.$get(`/api/review/${this.product._id}`);
         console.log(review);
-        return {
-          review: review,
-        };
+        this.reviews = review.reviews;
       } catch (err) {
         console.log(err);
       }
@@ -490,10 +520,16 @@ export default {
         let response = await this.$axios.post(`/api/reviews/${product._id}`, {
           headline: this.headline,
           body: this.body,
-          rating: this.rating,
+          rating: this.ratings,
         });
         console.log(product._id);
         console.log(response);
+        if (response.status == 200) {
+          this.$bvToast.toast(response.data.message, {
+            variant: "secondary",
+          });
+          this.reviews.push(response.data.review);
+        }
       } catch (err) {
         console.log(err);
       }

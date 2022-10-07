@@ -403,7 +403,7 @@
                       "
                     >
                       <span class="filters-toolbar__product-count"
-                        >Showing: 22</span
+                        >Showing: {{ products.length }}</span
                       >
                     </div>
                     <div class="col-4 col-md-4 col-lg-4 text-right">
@@ -440,16 +440,18 @@
               <!-- end toolbar -->
               <div class="grid-products grid--view-items">
                 <div class="row">
-                  <!-- <ProductBox
-                  v-for="product in category.products"
-                  v-bind:key="product.id"
-                  v-bind:product="product"
-                /> -->
-                  <!-- <ProductList
-                  v-for="product in category.products"
-                  v-bind:key="product.id"
-                  v-bind:product="product"
-                /> -->
+                  <ProductBox
+                    v-for="product in products"
+                    v-bind:key="product.id"
+                    v-bind:product="product"
+                    v-show="grid"
+                  />
+                  <ProductList
+                    v-for="product in products"
+                    v-bind:key="product.id"
+                    v-bind:product="product"
+                    v-show="list"
+                  />
                 </div>
               </div>
             </div>
@@ -489,10 +491,21 @@ export default {
       category: {
         products: [],
       },
+      grid: true,
+      list: false,
     };
   },
   mounted() {},
   watch: {},
-  methods: {},
+  methods: {
+    showGrid() {
+      this.grid = true;
+      this.list = false;
+    },
+    showList() {
+      this.list = true;
+      this.grid = false;
+    },
+  },
 };
 </script>

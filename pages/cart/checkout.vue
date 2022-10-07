@@ -7,117 +7,7 @@
     </div>
     <div class="container">
       <div class="row billing-field">
-        <div class="col-6 col-xl-6.col-md-6.col-lg-6 col-sm-6">
-          <div class="create-ac-content bg-light-gray padding-20px-all">
-            <form>
-              <fieldset>
-                <h2 class="login-title mb-3">Billing details</h2>
-                <div class="row">
-                  <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                    <label for="input-firstname"
-                      >First Name <span class="required-f">*</span></label
-                    >
-                    <input
-                      name="firstname"
-                      v-model="first_name"
-                      id="input-firstname"
-                      type="text"
-                    />
-                  </div>
-                  <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                    <label for="input-lastname"
-                      >Last Name <span class="required-f">*</span></label
-                    >
-                    <input
-                      name="lastname"
-                      v-model="last_name"
-                      id="input-lastname"
-                      type="text"
-                    />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                    <label for="input-email"
-                      >E-Mail <span class="required-f">*</span></label
-                    >
-                    <input
-                      name="email"
-                      value=""
-                      id="input-email"
-                      type="email"
-                    />
-                  </div>
-                  <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                    <label for="input-telephone"
-                      >Telephone <span class="required-f">*</span></label
-                    >
-                    <input
-                      name="telephone"
-                      v-model="email"
-                      id="input-telephone"
-                      type="tel"
-                    />
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset>
-                <div class="row">
-                  <div class="form-group col-md-6 col-lg-6 col-xl-6">
-                    <label for="input-company">Company</label>
-                    <input
-                      name="company"
-                      value=""
-                      id="input-company"
-                      type="text"
-                    />
-                  </div>
-                  <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                    <label for="input-address-1"
-                      >Address <span class="required-f">*</span></label
-                    >
-                    <input
-                      name="address"
-                      v-model="address"
-                      id="input-address"
-                      type="text"
-                    />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                    <label for="input-postcode"
-                      >Post Code <span class="required-f">*</span></label
-                    >
-                    <input
-                      name="postcode"
-                      v-model="zipcode"
-                      id="input-postcode"
-                      type="text"
-                    />
-                  </div>
-                  <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
-                    <label for="input-country"
-                      >State <span class="required-f">*</span></label
-                    >
-                    <select name="country_id" id="input-country">
-                      <option value="">--- Please Select ---</option>
-                      <option value="244">Abuja</option>
-                      <option value="1">Lagos</option>
-                      <option value="2">Osun</option>
-                      <option value="3">Oyo</option>
-                      <option value="4">Kwara</option>
-                      <option value="5">Anambra</option>
-                      <option value="6">Ondo</option>
-                    </select>
-                  </div>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-        <div class="col-6 col-xl-6.col-md-6.col-lg-6 col-sm-6">
+        <div class="col-6 col-xl-6.col-md-6.col-lg-6 col-sm-6 offset-md-3">
           <div class="your-order-payment">
             <div class="your-order">
               <h2 class="login-title mb-4">Your Order</h2>
@@ -189,7 +79,7 @@
                   <b-spinner small v-if="loading"></b-spinner>
                 </button>
               </div>
-              <div class="order-button-payment my-4">
+              <!-- <div class="order-button-payment my-4">
                 <button
                   class="btn--checkout"
                   :disabled="loading"
@@ -198,7 +88,7 @@
                   Pay with Paystack 2
                   <b-spinner small v-if="loading"></b-spinner>
                 </button>
-              </div>
+              </div> -->
               <div class="my-3" id="card-element"></div>
               <div>{{ errors }}</div>
 
@@ -414,3 +304,5 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+</style>

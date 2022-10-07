@@ -94,8 +94,8 @@
                       >
                     </li>
                     <li>
-                      <nuxt-link to="/producttype/dress" class="site-nav"
-                        >Dress</nuxt-link
+                      <nuxt-link to="/producttype/gown" class="site-nav"
+                        >Gown</nuxt-link
                       >
                     </li>
                     <li>
