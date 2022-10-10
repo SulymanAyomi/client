@@ -40,7 +40,7 @@
     </td>
     <td class="text-center small--hide cart-price">
       <div>
-        <span class="money">$ {{ getItemTotal.toFixed(2) }} </span>
+        <span class="money">${{ getItemTotal.toFixed(2) }} </span>
       </div>
     </td>
     <td class="text-center small--hide">

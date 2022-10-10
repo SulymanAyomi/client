@@ -1,10 +1,15 @@
-URL = "http://localhost:4000";
+URL = process.env.URL;
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "client",
-    script: [{ src: "https://js.stripe.com/v3/" }],
+    title: "Mehka store",
+    script: [
+      { src: "https://js.stripe.com/v3/" },
+      {
+        src: "https://unpkg.com/vue-star-rating/dist/VueStarRating.umd.min.js",
+      },
+    ],
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -22,6 +27,7 @@ export default {
     { src: "~/plugins/localStorage.js", ssr: false },
     { src: "~/plugins/axios.js" },
     { src: "~/plugins/auth.js", ssr: false },
+    { src: "~/plugins/rating.js", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

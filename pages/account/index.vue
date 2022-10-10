@@ -7,7 +7,7 @@
     </div>
     <div class="container">
       <div class="row mb-3">
-        <div class="col-6 col-md-12 col-sm-12 col-lg-6">
+        <div class="col-sm-12 col-md-12 col-lg-6 mb-3">
           <div class="create-ac-content">
             <div class="cart">
               <h2 class="login-title mb-3">My orders</h2>
@@ -30,7 +30,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+        <div class="col-md-6 col-sm-6 col-lg-6">
           <div class="create-ac-content bg-light-gray padding-20px-all">
             <fieldset>
               <h2 class="login-title mb-3">Personal details</h2>
@@ -62,33 +62,52 @@
                 </div>
               </div>
             </fieldset>
-            <h2 class="login-title mb-3">
-              Shipping details
-              <span class="floatright">
-                <nuxt-link to="/account/address"> Add</nuxt-link></span
-              >
-            </h2>
-            <table class="table table-striped table-hover text-left">
+            <h2 class="login-title mb-3">Default shipping details</h2>
+            <table class="table table-striped table-hover text-left address">
+              <thead>
+                <tr>
+                  <th>State</th>
+                  <th>City</th>
+                  <th>Street</th>
+                  <th>phone</th>
+                </tr>
+              </thead>
+              <tbody class="">
+                <template v-if="$auth.$state.user.address">
+                  <DefaultAddress v-bind:address="$auth.$state.user.address" />
+                </template>
+                <tr v-else>
+                  <td colspan="4">
+                    Please set one of your addresses as default
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table table-striped table-hover text-left address">
               <thead>
                 <tr>
                   <th></th>
                   <th>State</th>
                   <th>City</th>
                   <th>Street</th>
-                  <th>phone-number</th>
+                  <th>phone</th>
+                  <th></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody class="">
                 <template v-if="addresses">
                   <AddressTable
-                    v-for="address in addresses"
+                    v-for="(address, index) in addresses"
                     v-bind:key="address._id"
                     v-bind:address="address"
+                    v-bind:index="index"
+                    v-on:onSetDefault="onSetDefault"
+                    v-on:onDelete="onDeleteAddress"
                   />
                 </template>
-                <tr>
-                  <td colspan="6">Please add your address for delivery</td>
+                <tr v-else>
+                  <td colspan="7">Please add your address for delivery</td>
                 </tr>
               </tbody>
             </table>
@@ -145,14 +164,16 @@ export default {
         console.log(err);
       }
     },
-    async onSetDefault(id, index) {
+    async onSetDefault(id) {
       try {
         let response = await this.$axios.$put("/api/addresses/set/default", {
           id: id,
         });
-
+        console.log(response);
         if (response.success) {
-          this.message = response.message;
+          this.$bvToast.toast(response.message, {
+            noCloseButton: false,
+          });
           await this.$auth.fetchUser();
         }
       } catch (err) {
@@ -192,9 +213,14 @@ export default {
 <style scoped>
 .floatright {
   float: right;
-  text-transform: lowercase;
-  color: #0000ff;
+  text-transform: capitalize;
+
   cursor: pointer;
+  border: 1px solid #0000ff;
+  padding: 3px;
+}
+.floatright > a {
+  color: #0000ff;
 }
 thead {
   background-color: #dee1e6;

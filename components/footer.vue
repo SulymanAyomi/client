@@ -246,7 +246,9 @@
                     <!-- modal close -->
                     <div class="row">
                       <!-- img -->
-                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                      <div
+                        class="col-lg-6 col-md-6 col-sm-12 col-xs-12 sm-mt-2"
+                      >
                         <div class="productdetail-img">
                           <div class="zoompro-wrap product-zoom pl-20">
                             <div class="imgbox">
@@ -254,10 +256,6 @@
                                 alt=""
                                 :src="$store.state.modalProduct.photo"
                               />
-                            </div>
-                            <div class="product-labels">
-                              <span class="lbl on-sale">Sale</span
-                              ><span class="lbl pr-label1">new</span>
                             </div>
                           </div>
                         </div>
@@ -319,12 +317,6 @@
                           <div class="productdetail_description">
                             <p>
                               {{ $store.state.modalProduct.description }}
-                              But I must explain to you how all this mistaken
-                              idea of denouncing pleasure and praising pain was
-                              born and I will give you a complete account of the
-                              system, and expound the actual teachings of the
-                              great explorer of the truth, the master-builder of
-                              human happiness.
                             </p>
                           </div>
                           <form
@@ -616,13 +608,12 @@ export default {
         color: this.color,
         size: this.size,
       };
-
-      console.log("e", item);
       this.$store.commit("addToCartProduct", item);
       this.$bvToast.toast("Product add to cart", {
         varient: "danger",
         solid: true,
         noCloseButton: true,
+        autoHideDelay: 3000,
       });
     },
     removeModal() {

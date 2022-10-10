@@ -14,7 +14,7 @@
       <!-- single product -->
       <div class="productdetail">
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-6 col-sm-12 col-md-6">
             <div class="productdetail-img">
               <div class="zoompro-wrap product-zoom pl-20">
                 <div class="imgbox">
@@ -24,7 +24,7 @@
                   <span class="lbl on-sale">Sale</span
                   ><span class="lbl pr-label1">new</span>
                 </div>
-                <div class="product-buttons">
+                <!-- <div class="product-buttons">
                   <a
                     href="https://www.youtube.com/"
                     class="btn popup-video"
@@ -37,11 +37,11 @@
                       aria-hidden="true"
                     ></i
                   ></a>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-6 col-sm-12 col-md-6">
             <div class="productdetail_info">
               <h1 class="productdetail_title">{{ product.title }}</h1>
               <div class="productdetail_stock">
@@ -72,11 +72,6 @@
               <div class="productdetail_description">
                 <p>
                   {{ product.description }}
-                  But I must explain to you how all this mistaken idea of
-                  denouncing pleasure and praising pain was born and I will give
-                  you a complete account of the system, and expound the actual
-                  teachings of the great explorer of the truth, the
-                  master-builder of human happiness.
                 </p>
               </div>
               <form
@@ -372,38 +367,6 @@
                 </form>
               </div>
               <div class="p-reviews">
-                <div class="spr-review">
-                  <div class="spr-review-header">
-                    <span
-                      class="
-                        product-review
-                        spr-starratings spr-review-header-starratings
-                      "
-                      ><span class="reviewLink"
-                        ><i class="fa fa-star"></i
-                        ><i class="font-13 fa fa-star"></i
-                        ><i class="font-13 fa fa-star"></i
-                        ><i class="font-13 fa fa-star"></i
-                        ><i class="font-13 fa fa-star"></i></span
-                    ></span>
-                    <h3 class="spr-review-header-title">
-                      Lorem ipsum dolor sit amet
-                    </h3>
-                    <span class="spr-review-header-byline"
-                      ><strong>dsacc</strong> on
-                      <strong>Apr 09, 2019</strong></span
-                    >
-                  </div>
-                  <div class="spr-review-content">
-                    <p class="spr-review-content-body">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                  </div>
-                </div>
-                <template></template>
                 <div
                   class="spr-review"
                   v-for="review in reviews"
@@ -451,12 +414,8 @@
 </template>
 
 <script>
-import StarRating from "vue-star-rating";
 import { mapActions } from "vuex";
 export default {
-  components: {
-    StarRating,
-  },
   async asyncData({ $axios, params }) {
     try {
       let product = await $axios.$get(`/api/products/${params.slug}`);
@@ -482,7 +441,6 @@ export default {
   },
   mounted() {
     this.getReview();
-    console.log("rev", this.review);
   },
   methods: {
     ...mapActions(["addProductToCart"]),
@@ -492,7 +450,7 @@ export default {
     async getReview() {
       try {
         let review = await this.$axios.$get(`/api/review/${this.product._id}`);
-        console.log(review);
+
         this.reviews = review.reviews;
       } catch (err) {
         console.log(err);
@@ -509,11 +467,19 @@ export default {
       }
     },
     addProduct() {
-      let product = this.product;
-      let quantity = this.quantity;
-      let color = this.color;
-      let size = this.size;
-      this.$store.commit("addToCartProduct", product, quantity, color, size);
+      let item = {
+        product: this.product,
+        quantity: this.quantity,
+        color: this.color,
+        size: this.size,
+      };
+      this.$store.commit("addToCartProduct", item);
+      this.$bvToast.toast("Product add to cart", {
+        autoHideDelay: 3000,
+        appendToast: true,
+        noCloseButton: true,
+        solid: true,
+      });
     },
     async onAddReview(product) {
       try {
@@ -522,8 +488,7 @@ export default {
           body: this.body,
           rating: this.ratings,
         });
-        console.log(product._id);
-        console.log(response);
+
         if (response.status == 200) {
           this.$bvToast.toast(response.data.message, {
             variant: "secondary",

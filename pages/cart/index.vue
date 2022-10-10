@@ -12,9 +12,10 @@
             <table>
               <thead class="cart__row cart__header">
                 <tr>
-                  <th colspan="2" class="text-center">Product</th>
+                  <th colspan="2" class="text-center product">Product</th>
+                  <th class="text-center product1">Product</th>
                   <th class="text-center">Price</th>
-                  <th class="text-center">Quantity</th>
+                  <th class="text-center">Qty</th>
                   <th class="text-center">Total</th>
                   <th class="action">&nbsp;</th>
                 </tr>
@@ -29,17 +30,17 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <td colspan="4" class="text-right">
+                  <td colspan="3" class="text-right">
                     <span class="cart__subtotal-title">Subtotal</span>
                   </td>
-                  <td colspan="" class="text-center">
+                  <td class="text-center">
                     <span class=""
                       ><span class="money"
                         >$ {{ getCartTotalPrice }}
                       </span></span
                     >
                   </td>
-                  <td colspan="4" class="text-center">
+                  <td class="text-center">
                     <span class="cart__subtotal-title"
                       >{{ getCartLength }} items</span
                     >

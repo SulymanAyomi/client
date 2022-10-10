@@ -22,20 +22,20 @@
       </div>
       <!-- Product Review -->
       <p class="product-review">
-        <i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i
-        ><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star-o"></i
-        ><i class="font-13 fa fa-star-o"></i>
+        <client-only>
+          <star-rating
+            v-model="product.avarageRating"
+            :show-rating="false"
+            :glow="1"
+            :border-width="1"
+            :read-only="true"
+            :star-size="10"
+          ></star-rating>
+        </client-only>
       </p>
-      <!-- End Product Review -->
-      <!-- Sort Description -->
       <p>
-        Belle Multipurpose Bootstrap 4 Html Template that will give you and your
-        customers a smooth shopping experience which can be used for various
-        kinds of stores such as boutiques, bookstores, technology stores,
-        jewelries and other types of web shops....
+        {{ product.description }}
       </p>
-      <!-- End Sort Description -->
-      <!-- Price -->
       <p>price range form XS to XS</p>
 
       <p class="product-price price">
@@ -59,6 +59,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
+
 export default {
   name: "ProductList",
   props: {

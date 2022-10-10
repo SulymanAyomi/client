@@ -4,7 +4,7 @@
       <div class="page-title">
         <div class="wrapper">
           <h1 class="page-width">Add Address</h1>
-          <p>
+          <p style="margin: 2px">
             All your orders will be delivered to the address. You can always
             change it from your <NuxtLink to="/account"> account page</NuxtLink>
           </p>
@@ -14,7 +14,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
-          <div class="mb-4">
+          <div class="mb-4 ppp">
             <div class="create-ac-content bg-light-gray padding-20px-all">
               <form @submit.prevent="onSubmit">
                 <fieldset>

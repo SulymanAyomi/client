@@ -85,8 +85,8 @@
                       "
                     >
                       <span class="filters-toolbar__product-count"
-                        >Showing: {{ products.length }}</span
-                      >
+                        >Showing:
+                      </span>
                     </div>
                     <div class="col-4 col-md-4 col-lg-4 text-Fpright">
                       <div class="filters-toolbar__item">
@@ -122,7 +122,7 @@
               <!-- end toolbar -->
               <div class="grid-products grid--view-items">
                 <div class="row">
-                  <ProductBox
+                  <!-- <ProductBox
                     v-show="grid"
                     v-for="product in products"
                     v-bind:key="product.objectID"
@@ -133,7 +133,7 @@
                     v-for="product in products"
                     v-bind:key="product.objectID"
                     v-bind:product="product"
-                  />
+                  /> -->
                 </div>
               </div>
             </div>
@@ -146,8 +146,7 @@
 
 <script>
 export default {
-  watchQuery: ["title"],
-  async asyncData({ $axios, query }) {},
+  // watchQuery: ["title"],
   name: "Search",
   data() {
     return {
@@ -157,7 +156,7 @@ export default {
     };
   },
   mounted() {
-    this.search();
+    // this.search();
   },
   methods: {
     async search() {

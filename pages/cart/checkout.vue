@@ -7,7 +7,7 @@
     </div>
     <div class="container">
       <div class="row billing-field">
-        <div class="col-6 col-xl-6.col-md-6.col-lg-6 col-sm-6 offset-md-3">
+        <div class="col-xl-6 col-md-12 col-lg-6 col-sm-9 offset-md-3">
           <div class="your-order-payment">
             <div class="your-order">
               <h2 class="login-title mb-4">Your Order</h2>

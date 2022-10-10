@@ -3,29 +3,41 @@
     <div class="top-header">
       <div class="container-fluid">
         <div class="row align-cen">
-          <div class="col-lg-4">
+          <div class="col-10 col-lg-4 col-sm-8 col-md-5">
             <p class="phone">
               <i class="anm anm-phone-s"></i>
               +234 80 8659 3423
             </p>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-4 col-sm-4 d-none d-lg-block d-md-block col-md-4">
             <div class="text-center">
               <p class="top-header-text">Worldwide express Shipping</p>
             </div>
           </div>
-          <div class="col-lg-4 menu text-left">
-            <span class="user-menu d-block d-lg-none"
-              ><i class="anm anm-user-al" aria-hidden="true"></i
-            ></span>
-            <ul class="customer-links list-inline">
+          <div class="col-2 col-lg-4 col-sm-4 col-md-3 menu text-left">
+            <span class="user-menu d-block d-lg-none" @click="showUserMenu()">
+              <b-icon icon="person-fill"></b-icon>
+            </span>
+            <ul class="desktopusermenu list-inline d-sm-none">
               <template v-if="$store.state.auth.loggedIn">
                 <li>
-                  <nuxt-link to="/account">{{
-                    $auth.$state.user.email
-                  }}</nuxt-link>
+                  <nuxt-link to="/account">
+                    {{ $store.state.auth.user.email }}
+                  </nuxt-link>
                 </li>
                 <li @click="onLogout()" class="logout">Logout</li>
+              </template>
+              <template v-else>
+                <li><nuxt-link to="/login">Login</nuxt-link></li>
+                <li><nuxt-link to="/signup">Create Account</nuxt-link></li>
+              </template>
+            </ul>
+            <ul class="customer-links list-inline d-lg-none" :style="phonemenu">
+              <template v-if="$store.state.auth.loggedIn">
+                <li>
+                  <nuxt-link to="/account"> Account </nuxt-link>
+                </li>
+                <li @click="onLogout()" class="logout"><a>Logout</a></li>
               </template>
               <template v-else>
                 <li><nuxt-link to="/login">Login</nuxt-link></li>
@@ -39,6 +51,7 @@
     <div class="header-wrapper d-flex border-bottom">
       <div class="container-fluid">
         <div class="row align-items-center">
+          <!-- desktop menu -->
           <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
             <router-link to="/">
               <img src="/img/logo.jpeg" alt="Kingzx" title="Kingzx Store" />
@@ -113,12 +126,31 @@
               </ul>
             </nav>
           </div>
+          <!-- end desktop menu -->
+          <div class="col-2 col-sm-3 col-md-3 col-lg-8 d-lg-none">
+            <div class="d-flex flex-column">
+              <b-icon icon="x" @click="showmobile()" v-if="showMobile"></b-icon>
+              <b-icon icon="list" @click="showmobile()" v-else></b-icon>
+            </div>
+          </div>
+          <div
+            class="
+              mobile-logo
+              col-6 col-md-6 col-sm-6 col-lg-2
+              d-block d-lg-none
+            "
+          >
+            <div class="logo">
+              <router-link to="/">
+                <img src="/img/logo.jpeg" alt="Kingzx" title="Kingzx Store" />
+              </router-link>
+            </div>
+          </div>
           <div class="col-4 col-sm-3 col-md-3 col-lg-2">
-            <div class="site-cart mt-2 mx-2">
+            <div class="site-cart">
               <nuxt-link to="/cart" class="site-header__cart" title="Cart">
-                <font-awesome-layers class="fa-2x">
-                  <font-awesome-icon :icon="['fas', 'cart-shopping']" />
-                </font-awesome-layers>
+                <b-icon class="carticon" icon="bag"></b-icon>
+
                 <span
                   id="CartCount"
                   class="site-cart-count"
@@ -129,14 +161,14 @@
             </div>
             <div class="site-header__search" @click="isActive = !isActive">
               <span type="button" class="search">
-                <i class="fa fa-search icon"></i>
-                <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+                <b-icon icon="search"></b-icon>
               </span>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- search -->
     <div>
       <div class="newsletter-section search hide" :class="{ active: isActive }">
         <div class="container">
@@ -183,20 +215,108 @@
         </div>
       </div>
     </div>
+    <div class="mobilemenu" :class="{ active: showMobile }">
+      <div class="closemobileMenu" @click="showmobile()">
+        <b-icon icon="x"></b-icon> Close Menu
+      </div>
+      <ul id="MobileNav" class="mobile-nav">
+        <li class="lvl1 parent megamenu">
+          <nuxt-link to="/">Home </nuxt-link>
+        </li>
+
+        <li class="lvl1 parent megamenu">
+          <nuxt-link to="/products/category">Category </nuxt-link>
+          <b-icon icon="dash" @click="showCategory()" v-if="category"></b-icon>
+          <b-icon icon="plus" @click="showCategory()" v-else></b-icon>
+          <ul :style="mobilecategory">
+            <li class="lvl1 parent megamenu">
+              <nuxt-link to="/products/category/men">Men </nuxt-link>
+            </li>
+            <li class="lvl1 parent megamenu">
+              <nuxt-link to="/products/women">Women </nuxt-link>
+            </li>
+            <li class="lvl1 parent megamenu">
+              <nuxt-link to="/products/category/kids">Kids </nuxt-link>
+            </li>
+          </ul>
+        </li>
+        <li class="lvl1 parent megamenu">
+          <nuxt-link to="/producttype">Product Types </nuxt-link>
+          <b-icon
+            icon="dash"
+            @click="showProducttype()"
+            v-if="producttype"
+          ></b-icon>
+          <b-icon icon="plus" @click="showProducttype()" v-else></b-icon>
+          <ul :style="mobileproducttype">
+            <li class="lvl1 parent megamenu">
+              <nuxt-link to="/producttype/shirt">Shirt </nuxt-link>
+            </li>
+            <li class="lvl1 parent megamenu">
+              <nuxt-link to="/producttype/trouser">Trouser </nuxt-link>
+            </li>
+            <li class="lvl1 parent megamenu">
+              <nuxt-link to="/producttype/gown">Gown </nuxt-link>
+            </li>
+            <li class="lvl1 parent megamenu">
+              <nuxt-link to="/producttype/sportswear">Sportswear </nuxt-link>
+            </li>
+            <li class="lvl1 parent megamenu">
+              <nuxt-link to="/producttype/skirt">Skirt </nuxt-link>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 <script>
+import {
+  BIcon,
+  BIconPersonFill,
+  BIconArrowUp,
+  BIconDash,
+  BIconList,
+  BIconX,
+  BIconBag,
+  BIconSearch,
+  BIconPlus,
+} from "bootstrap-vue";
 import { mapGetters } from "vuex";
 export default {
+  components: {
+    BIcon,
+    BIconPersonFill,
+    BIconArrowUp,
+    BIconDash,
+    BIconX,
+    BIconList,
+    BIconBag,
+    BIconSearch,
+    BIconPlus,
+  },
   data() {
     return {
       isActive: false,
       query: "",
+      userPhoneActive: false,
+      category: false,
+      producttype: false,
+      showMobile: false,
     };
   },
   mounted() {},
   computed: {
     ...mapGetters(["getCartLength"]),
+    phonemenu() {
+      return this.userPhoneActive ? { display: "block" } : { display: "none" };
+    },
+    mobilecategory() {
+      return this.category ? { display: "block" } : { display: "none" };
+    },
+    mobileproducttype() {
+      return this.producttype ? { display: "block" } : { display: "none" };
+    },
   },
   methods: {
     onSearch() {
@@ -207,6 +327,18 @@ export default {
     },
     onLogout() {
       this.$auth.logout();
+    },
+    showUserMenu() {
+      this.userPhoneActive = !this.userPhoneActive;
+    },
+    showCategory() {
+      this.category = !this.category;
+    },
+    showProducttype() {
+      this.producttype = !this.producttype;
+    },
+    showmobile() {
+      this.showMobile = !this.showMobile;
     },
   },
 };

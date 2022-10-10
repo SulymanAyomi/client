@@ -367,7 +367,7 @@
             </div>
           </div>
           <!-- end sidebar -->
-          <div class="col-12 col-sm-12 col-md-9 col-lg-9 sidebar filterbar">
+          <div class="col-12 col-sm-12 col-md-9 col-lg-9 filterbar">
             <div class="category-description">
               <h3>Products</h3>
               <p>This page contains all our products.</p>

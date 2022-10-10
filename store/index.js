@@ -49,7 +49,6 @@ export const mutations = {
     let quantity = item.quantity;
     let color = item.color;
     let size = item.size;
-    console.log(quantity, color, size);
 
     // first check if product is in cart
     let cartProduct = state.cart.find((prod) => prod._id === product._id);

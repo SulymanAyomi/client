@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <section class="is-medium mb-6">
-      <div class="slideshow-wrapper p-0">
+      <div class="slideshow-wrapper">
         <div class="slideshow">
           <figure class="image" style="width: 100%">
             <img src="/img/home11-grid-banner2.jpg" />
@@ -9,7 +9,7 @@
           <div class="slidetext">
             <div class="slidecontainer">
               <div class="caption">
-                <h1 class="title">Mid season sale</h1>
+                <h1 class="title1">Mid season sale</h1>
                 <p class="subtitle">Up to 70% off on selected items</p>
                 <nuxt-link to="/products/"
                   ><span class="btn">shop now</span></nuxt-link
@@ -28,7 +28,7 @@
             <p>Grab these new items before they are gone!</p>
           </div>
 
-          <div class="col-12 px-3">
+          <div class="col-12 pbox">
             <div class="row">
               <ProductBox
                 v-for="product in products"
@@ -80,7 +80,7 @@ export default {
   async asyncData({ $axios, error }) {
     try {
       let response = await $axios.$get("/api/products");
-      console.log(response);
+
       return {
         products: response.products,
       };

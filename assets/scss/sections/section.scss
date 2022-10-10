@@ -1,3 +1,5 @@
+@use './custom'as *;
+
 body {
   padding-left: 0;
   padding-right: 0;
@@ -46,6 +48,10 @@ body {
     background-color: #fff;
     padding: 25px;
 
+    @include media-breakpoint-down(md) {
+      padding: 5px;
+    }
+
   }
 
   .modal-content {
@@ -67,14 +73,38 @@ body {
     cursor: pointer;
     text-align: center;
     font-size: 1.5rem;
+
+    @include media-breakpoint-down(md) {
+      top: 1px;
+      right: 12px;
+    }
+  }
+
+  .productdetail-img {
+    @include media-breakpoint-down(md) {
+      width: 110px !important;
+      padding: 3px !important;
+    }
   }
 
   .pull-right {
     float: right;
+  }
+
+  .productdetail_price {
+    @include media-breakpoint-down(md) {
+      font-size: 10px !important;
+    }
   }
 }
 
 .active {
   display: block !important;
 
+}
+
+.modal {
+  @include media-breakpoint-down(md) {
+    width: 75% !important;
+  }
 }
