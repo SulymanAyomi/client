@@ -1,4 +1,4 @@
-URL = process.env.URL;
+URL = process.env.AXIOS_URL;
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
