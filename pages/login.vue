@@ -57,7 +57,10 @@
               </div>
               <div class="row">
                 <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
-                  <input type="submit" class="btnk mb-3" value="Sign In" />
+                  <span class="btnk mb-3">
+                    <input type="submit" class="btnk" value="Sign In" />
+                    <b-spinner small v-if="loading"></b-spinner>
+                  </span>
                   <p class="mb-4">
                     <a href="#" id="RecoverPassword">Forgot your password?</a>
                     &nbsp; | &nbsp;
@@ -65,8 +68,8 @@
                       to="/signup"
                       class="account"
                       id="customer_register_link"
-                      >Create account</nuxt-link
-                    >
+                      >Create account
+                    </nuxt-link>
                   </p>
                 </div>
               </div>
@@ -88,6 +91,7 @@ export default {
       email: "",
       password: "",
       errors: [],
+      loading: false,
     };
   },
   methods: {
@@ -100,13 +104,10 @@ export default {
             password: this.password,
           },
         });
-        if (this.$store.state.auth.loggedIn) {
-          const toPath = "/cart";
-          this.$router.push(toPath);
-        }
+        this.loading = false;
       } catch (err) {
-        console.log("kkhfcvb", err);
         this.errors.push(err.response.data.message);
+        this.loading = false;
       }
     },
   },

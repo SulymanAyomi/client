@@ -6,12 +6,7 @@
           <div class="container">
             <div class="row">
               <div
-                class="
-                  col-12 col-sm-12 col-md-12 col-lg-7
-                  d-flex
-                  justify-content-start
-                  align-items-center
-                "
+                class="col-12 col-sm-12 col-md-12 col-lg-7 d-flex justify-content-start align-items-center"
               >
                 <div class="display-table w-100">
                   <div class="display-table-cell footer-newsletter">
@@ -48,12 +43,7 @@
                 </div>
               </div>
               <div
-                class="
-                  col-12 col-sm-12 col-md-12 col-lg-5
-                  d-flex
-                  justify-content-end
-                  align-items-center
-                "
+                class="col-12 col-sm-12 col-md-12 col-lg-5 d-flex justify-content-end align-items-center"
               >
                 <div class="footer-social">
                   <ul
@@ -201,12 +191,7 @@
               <div class="row">
                 <!--Footer Copyright-->
                 <div
-                  class="
-                    col-12 col-sm-12 col-md-12 col-lg-12
-                    order-1 order-md-0 order-lg-0 order-sm-1
-                    copyright
-                    text-sm-center text-md-left text-lg-left
-                  "
+                  class="col-12 col-sm-12 col-md-12 col-lg-12 order-1 order-md-0 order-lg-0 order-sm-1 copyright text-sm-center text-md-left text-lg-left"
                 >
                   <p class="text-center py-2">Copyright (c) 2022</p>
                 </div>
@@ -335,79 +320,24 @@
                                   <span class="value">{{ color }}</span></label
                                 >
                                 <div
-                                  data-value="Black"
+                                  v-for="pcolor in $store.state.modalProduct
+                                    .color"
+                                  :key="pcolor"
+                                  :data-value="color"
                                   class="swatch-element color black available"
                                 >
                                   <input
                                     class="swatchInput"
-                                    id="swatch-0-black"
+                                    :id="pcolor"
+                                    :name="pcolor + ppp"
                                     type="radio"
-                                    value="Black"
+                                    :value="pcolor"
                                     v-model="color"
                                   /><label
                                     class="swatchbox color small"
-                                    for="swatch-0-black"
-                                    style="background-color: black"
-                                    title="Black"
-                                  ></label>
-                                </div>
-                                <div
-                                  data-value="Maroon"
-                                  class="swatch-element color maroon available"
-                                >
-                                  <input
-                                    class="swatchInput"
-                                    id="swatch-0-maroon"
-                                    type="radio"
-                                    name="option-0"
-                                    value="Maroon"
-                                    v-model="color"
-                                  /><label
-                                    class="swatchbox color small"
-                                    for="swatch-0-maroon"
-                                    style="background-color: maroon"
-                                    title="Maroon"
-                                  ></label>
-                                </div>
-                                <div
-                                  data-value="Blue"
-                                  class="swatch-element color blue available"
-                                >
-                                  <input
-                                    class="swatchInput"
-                                    id="swatch-0-blue"
-                                    type="radio"
-                                    name="option-0"
-                                    value="Blue"
-                                    v-model="color"
-                                  /><label
-                                    class="swatchbox color small"
-                                    for="swatch-0-blue"
-                                    style="background-color: blue"
-                                    title="Blue"
-                                  ></label>
-                                </div>
-                                <div
-                                  data-value="Dark Green"
-                                  class="
-                                    swatch-element
-                                    color
-                                    dark-green
-                                    available
-                                  "
-                                >
-                                  <input
-                                    class="swatchInput"
-                                    id="swatch-0-dark-green"
-                                    type="radio"
-                                    name="option-0"
-                                    value="Dark Green"
-                                    v-model="color"
-                                  /><label
-                                    class="swatchbox color small"
-                                    for="swatch-0-dark-green"
-                                    style="background-color: darkgreen"
-                                    title="Dark Green"
+                                    :for="pcolor"
+                                    :style="{ 'background-color': pcolor }"
+                                    :title="pcolor"
                                   ></label>
                                 </div>
                               </div>
@@ -587,7 +517,7 @@ export default {
       quantity: 1,
       product: {},
       size: "M",
-      color: "Black",
+      color: "",
     };
   },
   mounted() {},
@@ -602,6 +532,9 @@ export default {
       }
     },
     addProduct(product) {
+      if (!this.color) {
+        this.color = this.$store.state.modalProduct.color[0];
+      }
       let item = {
         product: product,
         quantity: this.quantity,

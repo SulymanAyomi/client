@@ -5,7 +5,7 @@
         <div class="row align-cen">
           <div class="col-10 col-lg-4 col-sm-8 col-md-5">
             <p class="phone">
-              <i class="anm anm-phone-s"></i>
+              <b-icon icon="telephone-fill"></b-icon>
               +234 80 8659 3423
             </p>
           </div>
@@ -34,10 +34,12 @@
             </ul>
             <ul class="customer-links list-inline d-lg-none" :style="phonemenu">
               <template v-if="$store.state.auth.loggedIn">
-                <li>
-                  <nuxt-link to="/account"> Account </nuxt-link>
+                <li @click="onAccount()">
+                  <a>Account </a>
                 </li>
-                <li @click="onLogout()" class="logout"><a>Logout</a></li>
+                <li @click="onLogout()" class="logout">
+                  <a>Logout</a>
+                </li>
               </template>
               <template v-else>
                 <li><nuxt-link to="/login">Login</nuxt-link></li>
@@ -61,14 +63,12 @@
             <nav class="g-item">
               <ul class="sitenav medium text-center" id="siteNav">
                 <li class="lvl1 parent dropdown">
-                  <nuxt-link to="/" class="menu"
-                    >Home <i class="anm anm-angle-down-l"></i
-                  ></nuxt-link>
+                  <nuxt-link to="/" class="menu">Home</nuxt-link>
                 </li>
                 <li class="lvl1 parent dropdown">
-                  <nuxt-link to="/products/category" class="menu" href="#"
-                    >Category <i class="anm anm-angle-down-l"></i
-                  ></nuxt-link>
+                  <nuxt-link to="/products/category" class="menu"
+                    >Category</nuxt-link
+                  >
                   <ul id="drop" class="dropdown drop">
                     <div class="visi">
                       <li>
@@ -92,9 +92,9 @@
                   </ul>
                 </li>
                 <li class="lvl1 parent dropdown">
-                  <a class="menu" href="#"
-                    >Product Types <i class="anm anm-angle-down-l"></i
-                  ></a>
+                  <nuxt-link to="/producttype" class="menu"
+                    >Product Types</nuxt-link
+                  >
                   <ul class="dropdown drop">
                     <li>
                       <nuxt-link to="/producttype/shirt" class="site-nav"
@@ -128,21 +128,17 @@
           </div>
           <!-- end desktop menu -->
           <div class="col-2 col-sm-3 col-md-3 col-lg-8 d-lg-none">
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column togglemenu">
               <b-icon icon="x" @click="showmobile()" v-if="showMobile"></b-icon>
               <b-icon icon="list" @click="showmobile()" v-else></b-icon>
             </div>
           </div>
           <div
-            class="
-              mobile-logo
-              col-6 col-md-6 col-sm-6 col-lg-2
-              d-block d-lg-none
-            "
+            class="mobile-logo col-6 col-md-6 col-sm-6 col-lg-2 d-block d-lg-none"
           >
             <div class="logo">
               <router-link to="/">
-                <img src="/img/logo.jpeg" alt="Kingzx" title="Kingzx Store" />
+                <img src="/img/logo.jpeg" alt="Mehka" title="Mehka Store" />
               </router-link>
             </div>
           </div>
@@ -174,12 +170,7 @@
         <div class="container">
           <div class="row" style="justify-content: space-around">
             <div
-              class="
-                col-12 col-sm-12 col-md-12 col-lg-7
-                d-flex
-                justify-content-start
-                align-items-center
-              "
+              class="col-12 col-sm-12 col-md-12 col-lg-7 d-flex justify-content-start align-items-center"
             >
               <div class="display-table w-100">
                 <div class="display-table-cell footer-newsletter">
@@ -281,6 +272,7 @@ import {
   BIconBag,
   BIconSearch,
   BIconPlus,
+  BIconTelephoneFill,
 } from "bootstrap-vue";
 import { mapGetters } from "vuex";
 export default {
@@ -294,6 +286,7 @@ export default {
     BIconBag,
     BIconSearch,
     BIconPlus,
+    BIconTelephoneFill,
   },
   data() {
     return {
@@ -327,6 +320,9 @@ export default {
     },
     onLogout() {
       this.$auth.logout();
+    },
+    onAccount() {
+      this.$router.push("/account");
     },
     showUserMenu() {
       this.userPhoneActive = !this.userPhoneActive;

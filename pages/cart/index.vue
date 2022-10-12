@@ -29,7 +29,24 @@
                 />
               </tbody>
               <tfoot>
-                <tr>
+                <tr class="product">
+                  <td colspan="4" class="text-right">
+                    <span class="cart__subtotal-title">Subtotal</span>
+                  </td>
+                  <td class="text-center">
+                    <span class=""
+                      ><span class="money"
+                        >$ {{ getCartTotalPrice }}
+                      </span></span
+                    >
+                  </td>
+                  <td class="text-center">
+                    <span class="cart__subtotal-title"
+                      >{{ getCartLength }} items</span
+                    >
+                  </td>
+                </tr>
+                <tr class="product2">
                   <td colspan="3" class="text-right">
                     <span class="cart__subtotal-title">Subtotal</span>
                   </td>

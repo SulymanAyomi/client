@@ -20,6 +20,15 @@
           display: table-cell;
         }
       }
+
+    }
+
+    .product2 {
+      display: none;
+
+      @include media-breakpoint-down(sm) {
+        display: table-row;
+      }
     }
 
     td {

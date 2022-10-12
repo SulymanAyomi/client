@@ -200,7 +200,7 @@ export default {
           window.location.href = response.data.authorization_url;
         })
         .then((res) => {
-          const paystack = new window.PaystackPop();
+          const paystack = new new PaystackPop()();
           paystack.resumeTransaction(res.data.access_code);
           this.loading = false;
         })
@@ -214,17 +214,19 @@ export default {
       this.loading = true;
       let handler = PaystackPop.setup({
         key: "pk_test_890f1e0d3abc876f5eeb00c0ff8f2211d3b553cd", // Replace with your public key
-        email: "ay@gmail.com",
+        email: this.$auth.$state.user.email,
         channels: ["card"],
         amount: this.nairaToKobo(this.ordertotal),
         ref: "" + Math.floor(Math.random() * 1000000000 + 1),
-        onClose: function () {
-          alert("Window closed.");
-          this.loading = false;
+        onClose: function close() {
+          this.onPaystackClose();
         },
         callback: (response) => this.verifyPayment(response.reference),
       });
       handler.openIframe();
+    },
+    onPaystackClose() {
+      this.loading = false;
     },
     async verifyPayment(reference) {
       try {

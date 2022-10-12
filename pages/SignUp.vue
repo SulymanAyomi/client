@@ -91,7 +91,10 @@
                 </div>
                 <div class="row">
                   <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
-                    <input type="submit" class="btnk mb-3" value="Sign Up" />
+                    <span class="btnk mb-3">
+                      <input type="submit" class="btnk mb-3" value="Sign Up" />
+                      <b-spinner small v-if="loading"></b-spinner>
+                    </span>
                     <p class="mb-4">
                       <a href="#" id="RecoverPassword"
                         >Already have an account?</a
@@ -101,8 +104,8 @@
                         to="/login"
                         class="account"
                         id="customer_register_link"
-                        >Sign in</nuxt-link
-                      >
+                        >Sign in
+                      </nuxt-link>
                     </p>
                   </div>
                 </div>
@@ -127,17 +130,17 @@ export default {
       password: "",
       password2: "",
       errors: [],
+      loading: false,
     };
   },
   methods: {
     async onSubmitForm() {
-      this.loading = true;
-
       this.errors = [];
       if (this.password !== this.password2) {
         this.errors.push("The passwords doesn't match");
       }
       try {
+        this.loading = true;
         if (!this.errors.length) {
           const formData = {
             name: this.name,
@@ -148,20 +151,16 @@ export default {
           let response = await this.$axios.post("/api/auth/signup", formData);
 
           if (response.data.success) {
-            console.log("kkkhjgvj");
-            await this.$auth.loginWith("local", {
-              data: {
-                email: this.email,
-                password: this.password,
-              },
-            });
-            this.$router.push("/account/address");
+            this.$$router.push("/login");
+            this.loading = false;
           } else {
             this.errors.push(response.data.message);
+            this.loading = false;
           }
+          this.loading = false;
         }
       } catch (err) {
-        console.log(err);
+        this.loading = false;
         this.errors.push("Something went wrong. Try again!");
       }
     },

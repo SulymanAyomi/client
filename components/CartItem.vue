@@ -40,7 +40,7 @@
     </td>
     <td class="text-center small--hide cart-price">
       <div>
-        <span class="money">${{ getItemTotal.toFixed(2) }} </span>
+        <span class="money">${{ getItemTotal().toFixed(2) }} </span>
       </div>
     </td>
     <td class="text-center small--hide">
@@ -73,13 +73,12 @@ export default {
   //     this.quantity = val;
   //   },
   // },
-  computed: {
+  computed: {},
+  methods: {
     getItemTotal() {
       return this.item.orderPrice * this.item.quantity;
     },
-  },
-  methods: {
-    value(item) {},
+
     decrementQuantity(item) {
       this.$store.commit("decreaseQty", item);
       this.quantity = this.initialItem.quantity;
@@ -93,8 +92,6 @@ export default {
     incrementQuantity(item) {
       this.$store.commit("increaseQty", item);
       this.quantity = this.initialItem.quantity;
-      console.log(this.initialItem.quantity);
-
       this.$bvToast.toast("Product quantity increase", {
         varient: "danger",
         solid: true,

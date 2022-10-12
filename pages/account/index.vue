@@ -72,7 +72,7 @@
                   <th>phone</th>
                 </tr>
               </thead>
-              <tbody class="">
+              <tbody>
                 <template v-if="$auth.$state.user.address">
                   <DefaultAddress v-bind:address="$auth.$state.user.address" />
                 </template>
@@ -83,6 +83,11 @@
                 </tr>
               </tbody>
             </table>
+            <span class="floatright"
+              ><nuxt-link to="/account/address"
+                >Add new address
+              </nuxt-link></span
+            >
             <table class="table table-striped table-hover text-left address">
               <thead>
                 <tr>
@@ -214,13 +219,16 @@ export default {
 .floatright {
   float: right;
   text-transform: capitalize;
-
+  margin-bottom: 5px;
   cursor: pointer;
   border: 1px solid #0000ff;
   padding: 3px;
 }
 .floatright > a {
   color: #0000ff;
+}
+.floatright > a:hover {
+  text-decoration: none;
 }
 thead {
   background-color: #dee1e6;

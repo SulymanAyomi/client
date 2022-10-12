@@ -331,6 +331,7 @@
       border-top: 1px solid #eeeeee;
       position: relative;
 
+      .li,
       a {
         color: #333333;
         font-size: 14px;
@@ -367,4 +368,8 @@
       }
     }
   }
+}
+
+.togglemenu {
+  font-size: 25px;
 }

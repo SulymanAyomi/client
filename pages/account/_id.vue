@@ -84,7 +84,10 @@
                   </div>
                 </fieldset>
                 <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
-                  <input type="submit" class="btnk mb-3" value="Submit" />
+                  <span class="btnk mb-3">
+                    <input type="submit" class="btnk" value="Sign In" />
+                    <b-spinner small v-if="loading"></b-spinner>
+                  </span>
                 </div>
               </form>
             </div>

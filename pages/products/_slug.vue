@@ -90,74 +90,23 @@
                     >
 
                     <div
-                      data-value="Black"
+                      v-for="pcolor in product.color"
+                      :key="pcolor"
+                      :data-value="color"
                       class="swatch-element color black available"
                     >
                       <input
                         class="swatchInput"
-                        id="swatch-0-black"
+                        :id="pcolor"
+                        :name="pcolor + ppp"
                         type="radio"
-                        value="Black"
+                        :value="pcolor"
                         v-model="color"
                       /><label
                         class="swatchbox color small"
-                        for="swatch-0-black"
-                        style="background-color: black"
-                        title="Black"
-                      ></label>
-                    </div>
-                    <div
-                      data-value="Maroon"
-                      class="swatch-element color maroon available"
-                    >
-                      <input
-                        class="swatchInput"
-                        id="swatch-0-maroon"
-                        type="radio"
-                        name="option-0"
-                        value="Maroon"
-                        v-model="color"
-                      /><label
-                        class="swatchbox color small"
-                        for="swatch-0-maroon"
-                        style="background-color: maroon"
-                        title="Maroon"
-                      ></label>
-                    </div>
-                    <div
-                      data-value="Blue"
-                      class="swatch-element color blue available"
-                    >
-                      <input
-                        class="swatchInput"
-                        id="swatch-0-blue"
-                        type="radio"
-                        name="option-0"
-                        value="Blue"
-                        v-model="color"
-                      /><label
-                        class="swatchbox color small"
-                        for="swatch-0-blue"
-                        style="background-color: blue"
-                        title="Blue"
-                      ></label>
-                    </div>
-                    <div
-                      data-value="Dark Green"
-                      class="swatch-element color dark-green available"
-                    >
-                      <input
-                        class="swatchInput"
-                        id="swatch-0-dark-green"
-                        type="radio"
-                        name="option-0"
-                        value="Dark Green"
-                        v-model="color"
-                      /><label
-                        class="swatchbox color small"
-                        for="swatch-0-dark-green"
-                        style="background-color: darkgreen"
-                        title="Dark Green"
+                        :for="pcolor"
+                        :style="{ 'background-color': pcolor }"
+                        :title="pcolor"
                       ></label>
                     </div>
                   </div>
@@ -323,7 +272,7 @@
               <span>
                 <i class="font-13 fa fa-star"></i>
               </span>
-              <span> Based on 6 reviews</span>
+              <span>{{ reviewlength }}</span>
             </div>
             <div class="prdcontent">
               <div class="productreview-form">
@@ -374,10 +323,7 @@
                 >
                   <div class="spr-review-header">
                     <span
-                      class="
-                        product-review
-                        spr-starratings spr-review-header-starratings
-                      "
+                      class="product-review spr-starratings spr-review-header-starratings"
                       ><span class="reviewLink">
                         <client-only>
                           <star-rating
@@ -441,6 +387,7 @@ export default {
   },
   mounted() {
     this.getReview();
+    this.color = this.product.color[0];
   },
   methods: {
     ...mapActions(["addProductToCart"]),
@@ -498,6 +445,13 @@ export default {
       } catch (err) {
         console.log(err);
       }
+    },
+  },
+  computed: {
+    reviewlength() {
+      return this.reviews.length > 0
+        ? `Based on ${this.reviews.length} reviews`
+        : "Be the first to write a review";
     },
   },
 };
